@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>login-form</title>
+  </head>
+  <body>
+    <h1>로그인</h1>
+    <form id="loginForm" method="post">
+      <input type="text" id="email_login" placeholder="아이디" /> <br />
+      <input type="password" id="password_login" placeholder="비밀번호" />
+      <input type="submit" />
+    </form>
+    <div class="result"></div>
+
+    <h1>join my website!</h1>
+    <form id="joinForm" method="post">
+      email : <input required type="text" id="email" /> <br />
+      password : <input required type="password" id="password" />
+      <input type="submit" />
+    </form>
+
+    <button id="jwt">jwt</button>
+  </body>
+</html>
+
+<script>
+  const url = "http://localhost:5000";
+
+  const joinForm = document.querySelector("#joinForm");
+  const email = document.querySelector("#email");
+  const pwd = document.querySelector("#password");
+
+  const loginForm = document.querySelector("#loginForm");
+  const email_login = document.querySelector("#email_login");
+  const password_login = document.querySelector("#password_login");
+
+  const result = document.querySelector(".result");
+
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    fetch(`${url}/login`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email_login.value,
+        password: password_login.value,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result === "exist") {
+          result.innerHTML = `hello ${data.email}`;
+          document.cookie = `jwt = ${data.token}`;
+        } else if (data.result === "wrong pwd") {
+          result.innerHTML = "wrong pwd";
+        } else {
+          result.innerHTML = "none exist id";
+        }
+      });
+  });
+
+  joinForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    fetch(`${url}/join`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email.value,
+        password: pwd.value,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.email === "already exists") {
+          result.innerHTML = "already exists";
+        } else {
+          result.innerHTML = "success";
+        }
+      });
+  });
+
+  const jwtBtn = document.querySelector("#jwt");
+  jwtBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    fetch(`${url}/login/check`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user444: "???" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  });
+</script>
