@@ -53,7 +53,6 @@
       .then((data) => {
         if (data.result === "exist") {
           result.innerHTML = `hello ${data.email}`;
-          document.cookie = `jwt = ${data.token}`;
         } else if (data.result === "wrong pwd") {
           result.innerHTML = "wrong pwd";
         } else {
@@ -90,7 +89,6 @@
     fetch(`${url}/login/check`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user444: "???" }),
     })
       .then((res) => res.json())
       .then((data) => {
