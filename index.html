@@ -114,6 +114,7 @@
 
   const fileForm = document.querySelector("#fileForm");
   fileForm.addEventListener("submit", (e) => {
+  e.preventDefault();
     const files = e.target.files
     const formData = new FormData()
     formData.append('files', files[0])
