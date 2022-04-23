@@ -72,6 +72,7 @@
         email: email.value,
         password: pwd.value,
       }),
+      credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
