@@ -116,12 +116,15 @@
   fileForm.addEventListener("submit", (e) => {
   e.preventDefault();
     const files = e.target.files
+    console.log(files)
     const formData = new FormData()
-    formData.append('files', files[0])
+    formData.append('files', files)
     fetch(`${url}/upload`, {
       method: "POST",
       body : formData,
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: { Accept: "application/json", 
+      "Content-type": "multipart/form-data", 
+    },
       credentials: "include",
     })
     .then(res => res.json())
