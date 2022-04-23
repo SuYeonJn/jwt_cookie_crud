@@ -112,7 +112,8 @@
       });
   });
 
-  const fileForm = document.querySelector("submit", (e) => {
+  const fileForm = document.querySelector("#fileForm");
+  fileForm.addEventListener("submit", (e) => {
     e.preventDefault()
     fetch(`${url}/upload`, {
       method: "POST",
