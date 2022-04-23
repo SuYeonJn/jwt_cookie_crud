@@ -23,7 +23,7 @@
     <button id="jwt">jwt</button>
     <div class="jwt_exist"></div>
 
-    <form method="POST" action="/upload" enctype="multipart/form-data">
+    <form id ="fileForm" enctype="multipart/form-data">
       <input type = "file" name = "myFile"> </input>
       <input type = "submit"></input>
     </form>
@@ -112,11 +112,15 @@
       });
   });
 
-  fetch('/upload', {
+  const fileForm = document.querySelector("submit", (e) => {
+    e.preventDefault()
+    fetch('/upload', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     })
-  .then(res => res.json())
-  .then(data => console.log(data))
+    .then(res => res.json())
+    .then(data => console.log(data))
+    })
+  
 </script>
