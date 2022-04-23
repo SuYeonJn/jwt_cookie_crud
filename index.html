@@ -23,7 +23,7 @@
     <button id="jwt">jwt</button>
     <div class="jwt_exist"></div>
 
-    <form id ="fileForm" enctype="multipart/form-data">
+    <form id ="fileForm">
       <input type = "file" name = "myFile"> </input>
       <input type = "submit"></input>
     </form>
@@ -116,7 +116,7 @@
     e.preventDefault()
     fetch('/upload', {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "'multipart/form-data'" },
       credentials: "include",
     })
     .then(res => res.json())
