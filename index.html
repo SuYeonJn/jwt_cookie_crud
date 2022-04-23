@@ -116,7 +116,7 @@
     e.preventDefault()
     fetch(`${url}/upload`, {
       method: "POST",
-      headers: { "Content-Type": "'multipart/form-data'" },
+      headers: { "Content-Type": "multipart/form-data" },
       credentials: "include",
     })
     .then(res => res.json())
