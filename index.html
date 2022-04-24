@@ -115,12 +115,13 @@
   const fileForm = document.querySelector("#fileForm");
   const file = document.querySelector("#file")
 
-  console.log(file.files[0])
 
   var files=[];
   file.onchange = e => {
     files.push (e.target.files);
     console.log(files)
+    console.log(fileform.files[0])
+
   }
   console.log(files)
 
