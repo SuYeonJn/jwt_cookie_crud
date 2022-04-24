@@ -132,8 +132,8 @@
       body : formData,
       headers: {
         'Content-Type': 'multipart/form-data'
-    }
-      //credentials: "include",
+    },
+      credentials: "include",
     })
     .then(res => res.json())
     .then(data => console.log(data))
