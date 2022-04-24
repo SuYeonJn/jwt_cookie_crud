@@ -129,7 +129,7 @@
 
     fetch(`${url}/upload`, {
       method: "POST",
-      body : formData,
+      body : file.files[0].name,
       headers: {
         'Content-Type': 'multipart/form-data'
     },
