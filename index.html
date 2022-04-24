@@ -123,12 +123,12 @@
   console.log(files)
 
   fileForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+    e.preventDefault();
     ///////////////////////console.log(e.target) --> 이거 추가하고 푸시해서 시험
   
     console.log(files)
     const formData = new FormData()
-    formData.append('files', files)
+    formData.append('files', files[0])
     fetch(`${url}/upload`, {
       method: "POST",
       body : formData,
