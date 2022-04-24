@@ -115,9 +115,11 @@
   const fileForm = document.querySelector("#fileForm");
   const file = document.querySelector("#file")
 
+  console.log(file.files[0])
+
   var files=[];
   file.onchange = e => {
-    files = e.target.files;
+    files.push = e.target.files;
     console.log(files)
   }
   console.log(files)
@@ -128,7 +130,7 @@
   
     console.log(files)
     var formData = new FormData()
-    formData.append('files', files[0])
+    formData.append('files', file.files[0])
     fetch(`${url}/upload`, {
       method: "POST",
       body : formData,
