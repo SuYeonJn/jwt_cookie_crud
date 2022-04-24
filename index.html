@@ -23,8 +23,8 @@
     <button id="jwt">jwt</button>
     <div class="jwt_exist"></div>
 
-    <form id ="fileForm">
-      <input id = "file" type = "file" name = "myFile"> </input>
+    <form  id ="fileForm">
+      <input id = "file" type = "file" name = "fuck"> </input>
       <input type = "submit"></input>
     </form>
 
@@ -115,30 +115,25 @@
   const fileForm = document.querySelector("#fileForm");
   const file = document.querySelector("#file")
 
-
-  var files=[];
   file.onchange = e => {
-    files.push (e.target.files);
-    console.log(files)
-    console.log(fileform.files[0])
-
+    console.log("file change")
   }
-  console.log(files)
 
   fileForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    ///////////////////////console.log(e.target) --> 이거 추가하고 푸시해서 시험
-  
-    console.log(files)
+    e.preventDefault();    
+
+    console.log(file.files[0].name)
+   
     var formData = new FormData()
     formData.append('files', file.files[0])
+
     fetch(`${url}/upload`, {
       method: "POST",
       body : formData,
-      headers: { Accept: "application/json", 
-      "Content-type": "multipart/form-data", 
-    },
-      credentials: "include",
+      headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+      //credentials: "include",
     })
     .then(res => res.json())
     .then(data => console.log(data))
